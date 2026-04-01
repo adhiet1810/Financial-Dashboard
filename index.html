@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekap Keuangan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="spinner"></div>
+  <div class="loading-text">Memuat data keuangan…</div>
+</div>
+
+<!-- ERROR BANNER -->
+<div id="error-banner"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="nav-title-block">
+      <div class="nav-eyebrow">Rekap Keuangan</div>
+      <div class="nav-title" id="nav-cycle-title">–</div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-acct" id="nav-acct">–</div>
+      <div class="nav-rek" id="nav-rek">–</div>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- CYCLE PICKER -->
+  <div class="group" style="margin-top:24px;margin-bottom:24px;">
+    <div class="sec-header">Siklus Laporan</div>
+    <div class="card">
+      <div class="cycle-select-wrap">
+        <label class="cycle-label" for="cycle-select">Pilih siklus 25 ke 24</label>
+        <select class="cycle-select" id="cycle-select"></select>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-row" style="margin-top:0;" id="kpi-row"></div>
+
+  <!-- PERGERAKAN SALDO -->
+  <div class="group">
+    <div class="sec-header">Pergerakan Saldo</div>
+    <div class="card" id="saldo-card"></div>
+  </div>
+
+  <!-- PENGELUARAN PER KATEGORI -->
+  <div class="group">
+    <div class="sec-header">Pengeluaran per Kategori</div>
+    <div class="card" id="cat-card"></div>
+  </div>
+
+  <!-- KPR + PROPORSI side by side on wide, stacked on narrow -->
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:12px;margin-bottom:32px;" id="kpr-grid">
+    <div>
+      <div class="sec-header">Rincian KPR</div>
+      <div class="card" id="kpr-card"></div>
+    </div>
+    <div>
+      <div class="sec-header">Proporsi dari Gaji</div>
+      <div class="card" id="prop-card"></div>
+    </div>
+  </div>
+
+  <!-- TRANSAKSI -->
+  <div class="group">
+    <div class="sec-header">Seluruh Transaksi</div>
+    <div class="card">
+      <div class="filter-scroll" id="filters"></div>
+      <div class="tx-wrap">
+        <table class="tx">
+          <thead>
+            <tr>
+              <th style="width:48px">Tgl</th>
+              <th>Keterangan</th>
+              <th style="width:110px">Kategori</th>
+              <th style="width:130px">Jumlah (IDR)</th>
+            </tr>
+          </thead>
+          <tbody id="tx-body"></tbody>
+        </table>
+      </div>
+      <div class="tx-count" id="tx-count"></div>
+    </div>
+  </div>
+
+  <p class="note" id="cycle-note"></p>
+  <p style="font-size:11px;color:var(--label3);text-align:center;margin-top:24px;padding-bottom:24px;" id="footer-acct">Mandiri Bisnis · ···8392 · ADHIETYA SAPUTRA</p>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
