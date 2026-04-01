@@ -9,7 +9,7 @@
 // ══════════════════════════════════════════════════════════════════
 //  ★  CONFIGURE THIS — paste your Apps Script web app URL below
 // ══════════════════════════════════════════════════════════════════
-const SHEET_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzQkCwjh7VZwGwZVxgFWhQU4Hxh_-56XB2BNIXuyA7iS0sjIYo-Mbg2okulfRUBm_Jq/exec';
 // ══════════════════════════════════════════════════════════════════
 
 // Runtime state
