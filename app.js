@@ -278,9 +278,31 @@ async function init() {
   const errorBanner = document.getElementById('error-banner');
 
   try {
-    const res  = await fetch(SHEET_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    // Apps Script redirects through script.googleusercontent.com — use
+    // a JSONP-style dynamic script tag to avoid CORS preflight issues.
+    const data = await new Promise((resolve, reject) => {
+      const callbackName = '__gsCallback_' + Date.now();
+      const script = document.createElement('script');
+      const timeout = setTimeout(() => {
+        delete window[callbackName];
+        script.remove();
+        reject(new Error('Request timed out'));
+      }, 15000);
+      window[callbackName] = (json) => {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        script.remove();
+        resolve(json);
+      };
+      script.onerror = () => {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        script.remove();
+        reject(new Error('Failed to load script'));
+      };
+      script.src = SHEET_URL + '?callback=' + callbackName;
+      document.head.appendChild(script);
+    });
 
     if (data.error) throw new Error(data.error);
 
