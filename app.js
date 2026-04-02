@@ -62,7 +62,7 @@ function buildFilters() {
 function renderCycleOptions() {
   const select = document.getElementById('cycle-select');
   select.innerHTML = CYCLES.map(c =>
-    `<option value="${c.id}">${c.label}</option>`
+    `<option value="${c.id}">${c.monthTitle}</option>`
   ).join('');
 }
 
@@ -114,7 +114,7 @@ function renderSaldo(cycle, totals, incomeTotal) {
   ).join('');
   document.getElementById('saldo-card').innerHTML = `
     <div class="saldo-row">
-      <span class="saldo-lbl">Saldo awal (${cycle.label.split('–')[0].trim()})</span>
+      <span class="saldo-lbl">Saldo awal (${cycle.monthTitle.split('–')[0].trim()})</span>
       <span class="saldo-val n">${formatIDR(cycle.openingBalance)}</span>
     </div>
     ${incomeRows}
